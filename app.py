@@ -5,47 +5,55 @@ app = Flask(__name__)
 
 b = BSE()
 
-# Stocks With Their Company Code
+# Stocks With Their Company Code and Average Price
 stocks = {
     "Symphony Limited": {
         "code": "517385",
         "price": 991,
-        "quantity": 1
+        "quantity": 1,
+        "average_price": 1143.85
     },
     "Restaurant Brands Asia Ltd": {
         "code": "543248",
         "price": 100.09,
-        "quantity": 16
+        "quantity": 16,
+        "average_price": 174.77
     },
     "RELIANCE POWER LTD": {
         "code": "532939",
         "price": 12.47,
-        "quantity": 173
+        "quantity": 173,
+        "average_price": 18.75
     },
     "Jaiprakash Power Ventures Limited": {
         "code": "532627",
         "price": 5.82,
-        "quantity": 600
+        "quantity": 600,
+        "average_price": 8.30
     },
     "PAYTM": {
         "code": "543396",
         "price": 643.05,
-        "quantity": 8
+        "quantity": 8,
+        "average_price": 743.36
     },
     "IIFL Finance Ltd": {
         "code": "532636",
         "price": 484.05,
-        "quantity": 14
+        "quantity": 14,
+        "average_price": 505
     },
     "Sula Vineyards Ltd": {
         "code": "543711",
         "price": 380.40,
-        "quantity": 20
+        "quantity": 20,
+        "average_price": 424.80
     },
     "Adani Green Energy Ltd": {
         "code": "541450",
         "price": 912.12,
-        "quantity": 11
+        "quantity": 11,
+        "average_price": 1126.65
     }
 }
 
@@ -55,11 +63,13 @@ def index():
         stock = request.form['stock']
         purchase_price = float(request.form['purchase_price'])
         quantity = int(request.form['quantity'])
+        average_price = float(request.form['average_price'])  # Added average price input
 
         stocks[stock] = {
             "code": stock,
             "price": purchase_price,
-            "quantity": quantity
+            "quantity": quantity,
+            "average_price": average_price
         }
 
     stock_data = []
@@ -71,6 +81,7 @@ def index():
         code = details["code"]
         purchase_price = details["price"]
         quantity = details["quantity"]
+        average_price = details["average_price"]
 
         quote = b.getQuote(code)
         current_price = float(quote["currentValue"])
@@ -79,13 +90,25 @@ def index():
             profit = int((current_price - purchase_price) * quantity * 1.5)
             color = "green"
             status = f"Profit: {profit}"
+            action = "Wait"
+            action_color = "red"
         elif current_price == purchase_price:
             color = "black"
             status = "No Profit No Loss"
+            action = "Wait"
+            action_color = "red"
+        elif current_price > average_price:
+            profit = int((current_price - purchase_price) * quantity * 1.5)
+            color = "green"
+            status = f"Profit: {profit}"
+            action = "Sell"
+            action_color = "green"
         else:
             loss = int((purchase_price - current_price) * quantity)
             color = "red"
             status = f"Loss: {loss}"
+            action = "Wait"
+            action_color = "red"
 
         invested_amount = purchase_price * quantity
         current_amount = current_price * quantity
@@ -98,8 +121,11 @@ def index():
             "purchase_price": purchase_price,
             "quantity": quantity,
             "current_price": current_price,
+            "average_price": average_price,
             "status": status,
             "color": color,
+            "action": action,
+            "action_color": action_color,
             "invested_amount": invested_amount,
             "current_amount": current_amount
         })
