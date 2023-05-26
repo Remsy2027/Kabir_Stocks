@@ -7,50 +7,45 @@ b = BSE()
 
 # Stocks With Their Company Code
 stocks = {
-    "TATA_POWER": {
-        "code": "500400",
-        "price": 205,
-        "quantity": 40
+    "Symphony Limited": {
+        "code": "517385",
+        "price": 991,
+        "quantity": 1
     },
-    "TATA_MOTORS": {
-        "code": "500570",
-        "price": 524,
-        "quantity": 15
+    "Restaurant Brands Asia Ltd": {
+        "code": "543248",
+        "price": 100.09,
+        "quantity": 16
     },
-    "TATA_CONSULTANCY_SERVICES": {
-        "code": "532540",
-        "price": 3244,
-        "quantity": 12
+    "RELIANCE POWER LTD": {
+        "code": "532939",
+        "price": 12.47,
+        "quantity": 173
     },
-    "Sona_BLW_Precision_Forgings": {
-        "code": "543300",
-        "price": 540,
-        "quantity": 15
+    "Jaiprakash Power Ventures Limited": {
+        "code": "532627",
+        "price": 5.82,
+        "quantity": 600
     },
-    "HDFC_Bank": {
-        "code": "500180",
-        "price": 1648,
-        "quantity": 19
+    "PAYTM": {
+        "code": "543396",
+        "price": 643.05,
+        "quantity": 8
     },
-    "Aether_Industries": {
-        "code": "543534",
-        "price": 915,
+    "IIFL Finance Ltd": {
+        "code": "532636",
+        "price": 484.05,
+        "quantity": 14
+    },
+    "Sula Vineyards Ltd": {
+        "code": "543711",
+        "price": 380.40,
+        "quantity": 20
+    },
+    "Adani Green Energy Ltd": {
+        "code": "541450",
+        "price": 912.12,
         "quantity": 11
-    },
-    "Clean_Science_and_Technology": {
-        "code": "543318",
-        "price": 1495,
-        "quantity": 6
-    },
-    "DYNEMIC_PRODUCTS": {
-        "code": "532707",
-        "price": 323,
-        "quantity": 91
-    },
-    "Laxmi_Organic_Industries": {
-        "code": "543277",
-        "price": 275,
-        "quantity": 75
     }
 }
 
