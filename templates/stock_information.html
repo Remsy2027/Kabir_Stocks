@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .profit {
+            color: green;
+        }
+
+        .loss {
+            color: red;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Information</h1>
+        <table>
+            <tr>
+                <th>Stock</th>
+                <th>Purchase Price</th>
+                <th>Quantity</th>
+                <th>Current Price</th>
+                <th>Status</th>
+                <th>Invested Amount</th>
+                <th>Current Amount</th>
+            </tr>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.stock }}</td>
+                <td>{{ stock.purchase_price }}</td>
+                <td>{{ stock.quantity }}</td>
+                <td>{{ stock.current_price }}</td>
+                <td class="{% if stock.color == 'green' %}profit{% elif stock.color == 'red' %}loss{% endif %}">{{ stock.status }}</td>
+                <td>{{ stock.invested_amount }}</td>
+                <td>{{ stock.current_amount }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td class="total" colspan="5">Total Invested Amount:</td>
+                <td class="total">{{ total_invested_amount }}</td>
+                <td class="total">{{ total_current_amount }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
