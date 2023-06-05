@@ -77,16 +77,13 @@ def index():
     total_invested_amount = 0
     total_current_amount = 0
 
-    codes = [details["code"] for details in stocks.values()]
-    quotes = b.getScripCodesData(codes)
-
     for stock, details in stocks.items():
         code = details["code"]
         purchase_price = details["price"]
         quantity = details["quantity"]
         average_price = details["average_price"]
 
-        quote = quotes[code]
+        quote = b.getQuote(code)
         current_price = float(quote["currentValue"])
 
         if current_price > purchase_price:
